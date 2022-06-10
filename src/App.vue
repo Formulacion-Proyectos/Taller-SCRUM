@@ -6,7 +6,7 @@
 import InitialPage from './views/InitialPage.vue'
 
 export default {
-  name: 'App',
+  name: 'Ap',
 
   components: {
     InitialPage
