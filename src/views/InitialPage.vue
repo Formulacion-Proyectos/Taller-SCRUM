@@ -15,7 +15,7 @@ export default {
     return {
       usuarios: [
         {
-          nombre: 'pepito',
+          nombre: 'juanito',
           apellido: 'perez',
           direccion: {
             calle: 'tal',
