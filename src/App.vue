@@ -1,17 +1,9 @@
 <template>
-  <InitialPage />
+  <Home />
 </template>
 
-<script>
-import InitialPage from './views/InitialPage.vue'
-
-export default {
-  name: 'App',
-
-  components: {
-    InitialPage
-  }
-}
+<script setup>
+import Home from './views/Home.vue'
 </script>
 
 
