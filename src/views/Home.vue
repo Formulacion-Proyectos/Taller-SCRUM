@@ -1,8 +1,8 @@
 <template>
-  <buttonDropdown />
+  <NavBarHeader />
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import buttonDropdown from '../components/buttonDropdown.vue'
+import NavBarHeader from '../components/NavBarHeader.vue'
 </script>
