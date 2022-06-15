@@ -58,7 +58,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.3);
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 3;
   justify-content: center;
   align-items: center;
 }
