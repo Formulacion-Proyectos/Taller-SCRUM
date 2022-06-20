@@ -15,9 +15,9 @@
       </div>
       <div class="form-group">
         <input type="number" class="form-control" id="inputNumber" aria-describedby="emailHelp" placeholder="Digite un número">
-        <input type="number" class="form-control" id="inputOperation" :placeholder="placeHolderOperation" disabled>
+        <input class="form-control" id="inputOperation" :placeholder="placeHolderOperation" disabled>
         <span>=</span>
-        <input type="number" class="form-control" id="inputResult" :placeholder="placeHolderResult" disabled>
+        <input class="form-control" id="inputResult" :placeholder="placeHolderResult" disabled>
       </div>
       <div class="buttons-group">
         <a class="button-operation btn btn-light" v-on:click="pressButton">+</a>
