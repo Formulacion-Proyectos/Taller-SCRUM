@@ -65,6 +65,7 @@
                 <input type="text" class="form-control me-2">
                 <button type="submit" class="btn btn-dark">Buscar</button>
             </form>
+            <CalculadoraModal />
             <button
                 class="btn btn-dark ms-3"
                 v-on:click="changeShowModal"
@@ -79,6 +80,7 @@
 <script setup>
 import { ref } from 'vue'
 import LoginModal from './LoginModal.vue'
+import CalculadoraModal from './CalculadoraModal.vue'
 </script>
 
 <script>
