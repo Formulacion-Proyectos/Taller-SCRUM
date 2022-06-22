@@ -14,10 +14,10 @@
         <button type="button" class="btn-close" aria-label="Close" v-on:click="changeShowModal"></button>
       </div>
       <div class="form-group">
-        <input type="number" class="form-control" id="inputNumber" aria-describedby="emailHelp" placeholder="Digite un número">
-        <input class="form-control" id="inputOperation" :placeholder="placeHolderOperation" disabled>
+        <input type="number" class="form-control" id="inputNumber" aria-describedby="emailHelp" placeholder="Digite un número" v-model="numero">
+        <input class="form-control" id="inputOperation" placeholder="Operación" disabled v-model="operacion">
         <span>=</span>
-        <input class="form-control" id="inputResult" :placeholder="placeHolderResult" disabled>
+        <input class="form-control" id="inputResult" placeholder="Resultado" disabled v-model="resultado">
       </div>
       <div class="buttons-group">
         <a class="button-operation btn btn-light" v-on:click="pressButton('sum')">+</a>
@@ -39,8 +39,9 @@ export default {
   data () {
     return {
       showModal: false,
-      placeHolderOperation: 'Operación',
-      placeHolderResult: 'Resultado'
+      numero: Number,
+      operacion: '',
+      resultado: 0
     }
   },
 
@@ -49,57 +50,44 @@ export default {
       this.showModal = !this.showModal
     },
 
-    variables() {
-      this.numeros=[]
-      this.operaciones=[]
-      this.cadena = ' '
-    },
-
     pressButton(operation) {
-      this.numero = document.getElementById('inputNumber').value;
-      this.cadena += this.numero + '+'
-      this.placeHolderOperation=this.cadena
       switch (operation) {
         case 'sum':
-          this.numeros.push(this.numero)
-          this.operaciones.push('+')
-
+          this.operacion = this.operacion + this.numero + ' + '
+          this.resultado = this.resultado + this.numero
+          if(this.resultado === 0) this.resultado = this.numero
+          this.numero = Number
           break
         case 'rest':
-          this.numeros.push(this.numero)
-          this.operaciones.push('-')
-          this.cadena=+this.numero + '-'
-          placeHolderOperation=this.cadena
+          this.operacion = this.operacion + this.numero + ' - '
+          if (this.resultado === 0) {
+            this.resultado = this.numero
+          } else {
+            this.resultado = this.resultado - this.numero
+          }
+          this.numero = Number
           break
         case 'mult':
-          this.numeros.push(this.numero)
-          this.operaciones.push('*')
-          this.cadena=+this.numero + '*'
-          placeHolderOperation=this.cadena
+          this.operacion = this.operacion + this.numero + ' * '
+          if (this.resultado === 0) {
+            this.resultado = this.numero
+          } else {
+            this.resultado = this.resultado * this.numero
+          }
+          this.numero = Number
           break
         case 'div':
-          this.numeros.push(this.numero)
-          this.operaciones.push('/')
-          this.cadena=+this.numero + '/'
-          placeHolderOperation=this.cadena
+          this.operacion = this.operacion + this.numero + ' / '
+          if (this.resultado === 0) {
+            this.resultado = this.numero
+          } else {
+            this.resultado = this.resultado / this.numero
+          }
+          this.numero = Number
           break
         case 'result':
-          for (let i = 0; i < this.operaciones.length; i++) {
-            if (this.operaciones[i] == '+') {
-              this.numeros[0] = parseInt(this.numeros[0]) + parseInt(this.numeros[i + 1])
-            } else if (operaciones[i] == '-') {
-              this.numeros[0] = parseInt(this.numeros[0]) - parseInt(this.numeros[i + 1])
-            } else if (operaciones[i] == '*') {
-              this.numeros[0] = parseInt(this.numeros[0]) * parseInt(this.numeros[i + 1])
-            } else if (operaciones[i] == '/') {
-              this.numeros[0] = parseInt(this.numeros[0]) / parseInt(this.numeros[i + 1])
-            }
-          }
-          placeHolderResult = this.numeros[0]
-          placeHolderOperation = ''
-          this.numeros=[]
-          this.operaciones=[]
-          this.cadena = ''
+          this.numero = Number,
+          this.operacion = ''
           break
       }
 
