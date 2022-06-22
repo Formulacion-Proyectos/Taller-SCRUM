@@ -20,11 +20,11 @@
         <input class="form-control" id="inputResult" :placeholder="placeHolderResult" disabled>
       </div>
       <div class="buttons-group">
-        <a class="button-operation btn btn-light" v-on:click="pressButton">+</a>
-        <a class="button-operation btn btn-light" v-on:click="pressButton">-</a>
-        <a class="button-operation btn btn-light" v-on:click="pressButton">*</a>
-        <a class="button-operation btn btn-light" v-on:click="pressButton">/</a>
-        <a class="button-operation btn btn-light" v-on:click="pressButton">=</a>
+        <a class="button-operation btn btn-light" v-on:click="pressButton('sum')">+</a>
+        <a class="button-operation btn btn-light" v-on:click="pressButton('rest')">-</a>
+        <a class="button-operation btn btn-light" v-on:click="pressButton('mult')">*</a>
+        <a class="button-operation btn btn-light" v-on:click="pressButton('div')">/</a>
+        <a class="button-operation btn btn-light" v-on:click="pressButton('result')">=</a>
       </div>
     </form>
   </div>
@@ -49,8 +49,61 @@ export default {
       this.showModal = !this.showModal
     },
 
-    pressButton() {
-      console.log('pressButton')
+    variables() {
+      this.numeros=[]
+      this.operaciones=[]
+      this.cadena = ' '
+    },
+
+    pressButton(operation) {
+      this.numero = document.getElementById('inputNumber').value;
+      this.cadena += this.numero + '+'
+      this.placeHolderOperation=this.cadena
+      switch (operation) {
+        case 'sum':
+          this.numeros.push(this.numero)
+          this.operaciones.push('+')
+
+          break
+        case 'rest':
+          this.numeros.push(this.numero)
+          this.operaciones.push('-')
+          this.cadena=+this.numero + '-'
+          placeHolderOperation=this.cadena
+          break
+        case 'mult':
+          this.numeros.push(this.numero)
+          this.operaciones.push('*')
+          this.cadena=+this.numero + '*'
+          placeHolderOperation=this.cadena
+          break
+        case 'div':
+          this.numeros.push(this.numero)
+          this.operaciones.push('/')
+          this.cadena=+this.numero + '/'
+          placeHolderOperation=this.cadena
+          break
+        case 'result':
+          for (let i = 0; i < this.operaciones.length; i++) {
+            if (this.operaciones[i] == '+') {
+              this.numeros[0] = parseInt(this.numeros[0]) + parseInt(this.numeros[i + 1])
+            } else if (operaciones[i] == '-') {
+              this.numeros[0] = parseInt(this.numeros[0]) - parseInt(this.numeros[i + 1])
+            } else if (operaciones[i] == '*') {
+              this.numeros[0] = parseInt(this.numeros[0]) * parseInt(this.numeros[i + 1])
+            } else if (operaciones[i] == '/') {
+              this.numeros[0] = parseInt(this.numeros[0]) / parseInt(this.numeros[i + 1])
+            }
+          }
+          placeHolderResult = this.numeros[0]
+          placeHolderOperation = ''
+          this.numeros=[]
+          this.operaciones=[]
+          this.cadena = ''
+          break
+      }
+
+      this.placeHolderOperation = inputNumber;
     }
   }
 }
